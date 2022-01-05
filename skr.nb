@@ -19,14 +19,13 @@ E\[Mu][\[Eta]A_,\[Eta]B_,YA_,YB_,\[Mu]_]:=EQn[\[Eta]A,\[Eta]B,YA,YB,\
 \[Mu]]/Qn[\[Eta]A,\[Eta]B,YA,YB,\[Mu]]; 
 
 (*qber as in BohmannPseiner2020*)
-E\[Mu][\[Eta]A_, \[Eta]B_, YA_, YB_, \[Mu]_] := (1 - 
-     Vsys*(Qn[\[Eta]A, \[Eta]B, YA, 
-          YB, \[Mu]] - (\[Mu]^2*\[Eta]A*\[Eta]B + \[Mu](**
-            tc*)*\[Eta]A*YB + \[Mu](**tc*)*\[Eta]B*YA +(*tc^2**)
-           YA*YB))/(Qn[\[Eta]A, \[Eta]B, YA, 
-          YB, \[Mu]] + (\[Mu]^2*\[Eta]A*\[Eta]B + \
-\[Mu]*(*tc**)\[Eta]A*YB + \[Mu]*(*tc**)\[Eta]B*YA +(*tc^2**)YA*YB)))/
-   2; 
+E\[Mu][\[Eta]A_, \[Eta]B_, YA_, YB_, \[Mu]_] := 
+                                             (1 - Vsys*(Qn[\[Eta]A, \[Eta]B, YA, YB, \[Mu]] 
+                                             - (\[Mu]^2*\[Eta]A*\[Eta]B + \[Mu](**
+                                             tc*)*\[Eta]A*YB + \[Mu](**tc*)*\[Eta]B*YA +(*tc^2**)
+                                             YA*YB))/(Qn[\[Eta]A, \[Eta]B, YA, 
+                                               YB, \[Mu]] + (\[Mu]^2*\[Eta]A*\[Eta]B + \
+                                             \[Mu]*(*tc**)\[Eta]A*YB + \[Mu]*(*tc**)\[Eta]B*YA +(*tc^2**)YA*YB)))/2; 
 
 
 (*E\[Mu][\[Eta]A_,\[Eta]B_,YA_,YB_,\[Mu]_]:=\[Mu]*\[Eta]A*\[Eta]B/(\
@@ -45,8 +44,14 @@ R\[Mu][\[Eta]A_, \[Eta]B_, YA_, YB_, \[Mu]_,
        
 (*Loss[u_,HE_]:=db[u]*HE;*)
 
+(*Dark counts within tc*)
 NoiseA[NoiA_, tc_] := NoiA *tc
 NoiseB[NoiB_, tc_] := NoiB *tc
+
+(*Loss in dB*)
 db[u_] :=  10^(-u/10)
-\[Mu][PR_, tc_] := PR*tc
 Loss[u_] := db[u];
+
+(*\Mu equals the mean photon pair number, in formula: Brightness*coincidence window*)
+\[Mu][PR_, tc_] := PR*tc
+
