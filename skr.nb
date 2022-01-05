@@ -1,22 +1,24 @@
 (*gain as in \Ma2007*)
-(*Qn[\[Eta]A_,\[Eta]B_,YA_,YB_,\[Mu]_]:=(1-(1-YA)/(1+\[Eta]A*(\[Mu]/2)\
-)^2-(1-YB)/(1+\[Eta]B*(\[Mu]/2))^2+(1-YA)*(1-YB)/(1+\[Eta]A*(\[Mu]/2)+\
-\[Eta]B*(\[Mu]/2)-\[Eta]A*\[Eta]B*(\[Mu]/2))^2); *)
+(*Qn[\[Eta]A_,\[Eta]B_,YA_,YB_,\[Mu]_]:=
+                                         (1-(1-YA)/(1+\[Eta]A*(\[Mu]/2)\)^2-
+                                         (1-YB)/(1+\[Eta]B*(\[Mu]/2))^2+(1-YA)*(1-YB)/(1+\[Eta]A*(\[Mu]/2)+\
+                                          \[Eta]B*(\[Mu]/2)-\[Eta]A*\[Eta]B*(\[Mu]/2))^2); *)
 
 (*gain as in Bohmann/Pseiner2020*)
-Qn[\[Eta]A_, \[Eta]B_, YA_, 
-   YB_, \[Mu]_] := \[Mu]*\[Eta]A*\[Eta]B + \[Mu]^2*\[Eta]A*\[Eta]B + \
-\[Mu]*(*tc**)\[Eta]A*YB + \[Mu]*(*tc**)\[Eta]B*YA +(*tc^2**)YA*YB;
+Qn[\[Eta]A_, \[Eta]B_, YA_,YB_, \[Mu]_] := 
+                                          \[Mu]*\[Eta]A*\[Eta]B + \[Mu]^2*\[Eta]A*\[Eta]B + \
+                                          \[Mu]*(*tc**)\[Eta]A*YB + \[Mu]*(*tc**)\[Eta]B*YA +(*tc^2**)YA*YB;
 
 (*QBER E times gain Q as in \Ma2007*)
-(*EQn[\[Eta]A_,\[Eta]B_,YA_,YB_,\[Mu]_]:=(Qn[\[Eta]A,\[Eta]B,YA,YB,\
-\[Mu]]*e0-(2*(e0-ed)*\[Eta]A*\[Eta]B*(\[Mu]/2)*(1+(\[Mu]/2)))/((1+\
-\[Eta]A*(\[Mu]/2))*(1+\[Eta]B*(\[Mu]/2))*(1+\[Eta]A*(\[Mu]/2)+\[Eta]B*\
-(\[Mu]/2)-\[Eta]A*\[Eta]B*(\[Mu]/2)))) 
+(*EQn[\[Eta]A_,\[Eta]B_,YA_,YB_,\[Mu]_]:=
+                                          (Qn[\[Eta]A,\[Eta]B,YA,YB,\
+                                          \[Mu]]*e0-(2*(e0-ed)*\[Eta]A*\[Eta]B*(\[Mu]/2)*(1+(\[Mu]/2)))/((1+\
+                                          \[Eta]A*(\[Mu]/2))*(1+\[Eta]B*(\[Mu]/2))*(1+\[Eta]A*(\[Mu]/2)+\[Eta]B*\
+                                          (\[Mu]/2)-\[Eta]A*\[Eta]B*(\[Mu]/2)))) 
 
 (*QBER E as in Ma 2007*)*) 
-E\[Mu][\[Eta]A_,\[Eta]B_,YA_,YB_,\[Mu]_]:=EQn[\[Eta]A,\[Eta]B,YA,YB,\
-\[Mu]]/Qn[\[Eta]A,\[Eta]B,YA,YB,\[Mu]]; 
+E\[Mu][\[Eta]A_,\[Eta]B_,YA_,YB_,\[Mu]_]:=
+                                          EQn[\[Eta]A,\[Eta]B,YA,YB,\\[Mu]]/Qn[\[Eta]A,\[Eta]B,YA,YB,\[Mu]]; 
 
 (*qber as in BohmannPseiner2020*)
 E\[Mu][\[Eta]A_, \[Eta]B_, YA_, YB_, \[Mu]_] := 
@@ -28,19 +30,19 @@ E\[Mu][\[Eta]A_, \[Eta]B_, YA_, YB_, \[Mu]_] :=
                                              \[Mu]*(*tc**)\[Eta]A*YB + \[Mu]*(*tc**)\[Eta]B*YA +(*tc^2**)YA*YB)))/2; 
 
 
-(*E\[Mu][\[Eta]A_,\[Eta]B_,YA_,YB_,\[Mu]_]:=\[Mu]*\[Eta]A*\[Eta]B/(\
-\[Mu]*\[Eta]A*\[Eta]B+2*(\[Mu]^2*\[Eta]A*\[Eta]B+\[Mu](**tc*)*\[Eta]A*\
-YB+\[Mu](**tc*)*\[Eta]B*YA+(*tc^2**)YA*YB))*)
+(*E\[Mu][\[Eta]A_,\[Eta]B_,YA_,YB_,\[Mu]_]:=
+                                             \[Mu]*\[Eta]A*\[Eta]B/(\
+                                             \[Mu]*\[Eta]A*\[Eta]B+2*(\[Mu]^2*\[Eta]A*\[Eta]B+\[Mu](**tc*)*\[Eta]A*\
+                                             YB+\[Mu](**tc*)*\[Eta]B*YA+(*tc^2**)YA*YB))*)
 
 (*Shannon Entropy*)
 H[x_] := -x Log2[x] - (1 - x) Log2[1 - x]
 
 (*Key Rate*)
-R\[Mu][\[Eta]A_, \[Eta]B_, YA_, YB_, \[Mu]_, 
-   tc_] := (Qn[\[Eta]A, \[Eta]B, YA, 
-      YB, \[Mu]]*(1 - 
-       1.1  H[E\[Mu][\[Eta]A, \[Eta]B, YA, YB, \[Mu]]] - 
-       H[E\[Mu][\[Eta]A, \[Eta]B, YA, YB, \[Mu]]]))/tc; 
+R\[Mu][\[Eta]A_, \[Eta]B_, YA_, YB_, \[Mu]_,tc_] := 
+                                                   (Qn[\[Eta]A, \[Eta]B, YA, YB, \[Mu]]*(1 - 
+                                                   1.1  H[E\[Mu][\[Eta]A, \[Eta]B, YA, YB, \[Mu]]] - 
+                                                   H[E\[Mu][\[Eta]A, \[Eta]B, YA, YB, \[Mu]]]))/tc; 
        
 (*Loss[u_,HE_]:=db[u]*HE;*)
 
