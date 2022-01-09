@@ -56,4 +56,3 @@ Loss[u_] := db[u];
 
 (*\Mu equals the mean photon pair number, in formula: Brightness*coincidence window*)
 \[Mu][PR_, tc_] := PR*tc
-
