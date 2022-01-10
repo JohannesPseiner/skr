@@ -1,3 +1,5 @@
+(*For a detailed explanation of the introduced parameters and function see PhD Thesis by Johannes Pseiner from University of Vienna*)
+
 (*gain as in \Ma2007*)
 (*Qn[\[Eta]A_,\[Eta]B_,YA_,YB_,\[Mu]_]:=
                                          (1-(1-YA)/(1+\[Eta]A*(\[Mu]/2)\)^2-
