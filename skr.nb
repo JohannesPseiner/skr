@@ -32,7 +32,7 @@ E\[Mu][\[Eta]A_, \[Eta]B_, YA_, YB_, \[Mu]_] :=
                                              \[Mu]*(*tc**)\[Eta]A*YB + \[Mu]*(*tc**)\[Eta]B*YA +(*tc^2**)YA*YB)))/2; 
 
 
-(*E\[Mu][\[Eta]A_,\[Eta]B_,YA_,YB_,\[Mu]_]:=
+(*Visacc\[Mu][\[Eta]A_,\[Eta]B_,YA_,YB_,\[Mu]_]:=
                                              \[Mu]*\[Eta]A*\[Eta]B/(\
                                              \[Mu]*\[Eta]A*\[Eta]B+2*(\[Mu]^2*\[Eta]A*\[Eta]B+\[Mu](**tc*)*\[Eta]A*\
                                              YB+\[Mu](**tc*)*\[Eta]B*YA+(*tc^2**)YA*YB))*)
